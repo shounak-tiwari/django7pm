@@ -1,0 +1,50 @@
+
+body{
+    margin: 0px;
+    padding: 0px;
+    /* background-image: linear-gradient(); */
+}
+.nav-bar{
+    padding: 10px;
+    position: relative;
+    display: flex;
+    border-bottom:2px solid black ;
+   background-color: rgba(70, 131, 180, 0.538);
+}
+
+
+.logo img{
+
+    border: 2px solid transparent;
+    border-radius: 50%;
+}
+
+
+.brand-name{
+    position: absolute;
+    top: 2%;
+    left: 25%;
+    color: rgb(21, 18, 18);
+    font-size: 55px;
+    text-shadow: 2px 2px 5px goldenrod;
+}
+
+.nav{
+    background:none;
+    border: none;
+    position: absolute;
+    right: 10%;
+    top: 2%;
+    list-style: none;
+}
+.nav li svg{
+    margin: 15px;
+    font-size: 25px;
+    color: black;
+}
+
+.nav li a{
+    text-decoration: none;
+    color: black;
+    font-weight: bolder;
+}
