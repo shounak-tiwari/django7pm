@@ -76,11 +76,14 @@ WSGI_APPLICATION = 'Redconnect.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'Djdbms',          # Use 'NAME' in uppercase
+        'USER': 'root',            # Use 'USER' in uppercase
+        'PASSWORD': 'root',        # Use 'PASSWORD' in uppercase
+        'HOST': 'localhost',       # Use 'HOST' in uppercase
+        'PORT': '3306',            # Use 'PORT' in uppercase; can be a string
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -126,5 +129,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 STATICFILES_DIRS = [
     BASE_DIR / "static",
-    "/var/www/static/",
+    
 ]

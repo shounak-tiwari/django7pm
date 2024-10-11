@@ -21,6 +21,7 @@ body{
 
 
 .brand-name{
+    color: red;
     position: absolute;
     top: 2%;
     left: 25%;
@@ -32,6 +33,7 @@ body{
 .nav{
     background:none;
     border: none;
+    display: flex;
     position: absolute;
     right: 10%;
     top: 2%;

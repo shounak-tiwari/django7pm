@@ -1,27 +1,83 @@
+<!-- your_template.html -->
+<!DOCTYPE html>
 <html>
-    <head>
-        {% load static %}
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css" media="screen">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Tech in Hand</title>
+</head>
+<body>
+    <nav class="nav-bar">
+        <div class="logo">
+            <img src="{% static 'images/logo/logo.jpeg' %}" width="100px" alt="Logo" />
+        </div>
+        <div class="brand-name">
+            Tech in Hand
+        </div>
+        <ul class="nav-bar nav">
+            <!-- Navigation items -->
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Tasks</a></li>
+            <li><a href="#">About</a></li>
+            <!-- Add more navigation items as needed -->
+        </ul>
+    </nav>
 
-        <title>Redconnect</title>
+    <section style="border:2px solid black; padding: 20px; color: black;">
+        <form action="{% url 'index' %}" method="POST">
+            {% csrf_token %}
+            <table class="m-4">
+                <tr>
+                    <td class="m-4 p-4">
+                        <label for="title">Title:</label>
+                    </td>
+                    <td class="m-4 p-4">
+                        <input id="title" name="title" class="form-control" type="text" placeholder="Enter title" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="m-4 p-4">
+                        <label for="description">Description:</label>
+                    </td>
+                    <td class="m-4 p-4">
+                        <input id="description" name="description" class="form-control" type="text" placeholder="Enter description" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="m-4 p-4">
+                        <label for="completed">Completed:</label>
+                    </td>
+                    <td class="m-4 p-4">
+                        <input id="completed" name="completed" type="checkbox">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="m-4 p-4" colspan="2">
+                        <button type="submit" class="btn btn-primary">Add Task</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </section>
 
-        <link rel="stylesheet" href ="{% static 'css/style.css' %}" />
-    </head>
-    <body>
-        <nav class="nav-bar">
-            <div class="logo">
-                <img src ="{% static 'images/logo/logo.jpeg' %}" width = "100px" />
+    <section style="border:2px solid black; padding: 20px; color: black;">
+        {% for task in dictdemo %}
+            <div class="task-item">
+                <h3>{{ task.title }}</h3>
+                <p>{{ task.description }}</p>
+                <p>Status: {{ task.completed|yesno:"Completed,Not Completed" }}</p>
             </div>
-            <div class="brand-name">
-                Tech in hand 
-            </div>
-            <ul class="nav-bar nav">
-                <li><a href="#"> <svg xmlns="http://www.w3.org/2000/svg" height="44px" viewBox="0 -960 960 960" width="44px" fill="black"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"/></svg></a></li>
-                <li><a href="#"> <svg xmlns="http://www.w3.org/2000/svg" height="44px" viewBox="0 -960 960 960" width="44px" fill="black"><path d="m424-296 282-282-56-56-226 226-114-114-56 56 170 170Zm56 216q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg></a></li>
-                <li><a href="#"> <svg xmlns="http://www.w3.org/2000/svg" height="44px" viewBox="0 -960 960 960" width="44px" fill="black"><path d="M480-120q-42 0-71-29t-29-71q0-42 29-71t71-29q42 0 71 29t29 71q0 42-29 71t-71 29ZM254-346l-84-86q59-59 138.5-93.5T480-560q92 0 171.5 35T790-430l-84 84q-44-44-102-69t-124-25q-66 0-124 25t-102 69ZM84-516 0-600q92-94 215-147t265-53q142 0 265 53t215 147l-84 84q-77-77-178.5-120.5T480-680q-116 0-217.5 43.5T84-516Z"/></svg></a></li>
-                <li><a href="#"> <svg xmlns="http://www.w3.org/2000/svg" height="44px" viewBox="0 -960 960 960" width="44px" fill="black"><path d="M480-120 200-272v-240L40-600l440-240 440 240v320h-80v-276l-80 44v240L480-120Zm0-332 274-148-274-148-274 148 274 148Zm0 241 200-108v-151L480-360 280-470v151l200 108Zm0-241Zm0 90Zm0 0Z"/></svg></a></li>
-                <li><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="44px" viewBox="0 -960 960 960" width="44px" fill="black"><path d="M480-120v-80h280v-560H480v-80h280q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H480Zm-80-160-55-58 102-102H120v-80h327L345-622l55-58 200 200-200 200Z"/></svg></a></li>
-                
-            </ul>
-        </nav>
-    </body>
+            <hr>
+        {% empty %}
+            <h2>No tasks available.</h2> <!-- Message when no tasks are present -->
+        {% endfor %}
+    </section>
+
+    <!-- Optional: Include Bootstrap JS for interactive components -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFY2G+qW/3CjV1YEF8X26Oyc3rRgZZG3u6uVUU8hwciKPiXQfHgGpR9FJo" crossorigin="anonymous">
+    </script>
+</body>
 </html>
